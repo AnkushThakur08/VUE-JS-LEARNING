@@ -4,12 +4,12 @@ import { v4 as uuidv4 } from "uuid";
 import type { ITodo } from "../contracts/Todo";
 
 const todoArr = ref<ITodo[]>([]);
-const selectedFilter = ref<"all" | "pending" | "completed">("all")
+const selectedFilter = ref<"all" | "pending" | "completed">("all");
 const todoText = ref<string>("");
-console.log("we are here", todoText);
-const handleAddTodo = () => {
+const searchTodo = ref<string>("");
 
-  if(!todoText.value.trim()) return
+const handleAddTodo = () => {
+  if (!todoText.value.trim()) return;
   todoArr.value.push({
     id: uuidv4(),
     todo: todoText.value ?? "",
@@ -27,21 +27,39 @@ const handleDeleteTodo = (id: string) => {
 };
 
 const filteredTodo = computed(() => {
-  if(selectedFilter.value == 'pending'){
-    return todoArr.value.filter((todo) => !todo.status)
-  } else if (selectedFilter.value == 'completed') {
-    return todoArr.value.filter((todo) => todo.status)
+  if (selectedFilter.value == "pending") {
+    return todoArr.value.filter((todo) => !todo.status);
+  } else if (selectedFilter.value == "completed") {
+    return todoArr.value.filter((todo) => todo.status);
   }
-  
+
+  if (searchTodo.value) {
+    if (!searchTodo.value.trim()) return;
+    return todoArr.value.filter((todo) => todo.todo.includes(searchTodo.value));
+  }
+
   return todoArr.value;
+});
 
-})
-
-
+const todoCount = computed(() => {
+  return todoArr.value.filter((todo) => !todo.status).length;
+});
 </script>
 
 <template>
   <div>
+    <div>Todo Count : {{ todoCount }}</div>
+
+    <div class="flex gap-5 justify-start">
+      <input
+        type="search"
+        name="searc"
+        id="search"
+        v-model="searchTodo"
+        class="border border-slate-200 rounded px-4 py-2"
+        placeholder="Search"
+      />
+    </div>
     <div class="flex gap-5 justify-center">
       <input
         type="text"
