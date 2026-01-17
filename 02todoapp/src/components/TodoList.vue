@@ -29,10 +29,11 @@ const handleDeleteTodo = (id: string) => {
 const filteredTodo = computed(() => {
   if (selectedFilter.value == "pending") {
     return todoArr.value.filter((todo) => !todo.status);
+
   } else if (selectedFilter.value == "completed") {
     return todoArr.value.filter((todo) => todo.status);
   }
-
+  
   if (searchTodo.value) {
     if (!searchTodo.value.trim()) return;
     return todoArr.value.filter((todo) => todo.todo.includes(searchTodo.value));
