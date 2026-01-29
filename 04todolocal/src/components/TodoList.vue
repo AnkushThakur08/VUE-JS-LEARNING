@@ -26,14 +26,16 @@ const emit = defineEmits<{
         <tbody class="">
           <tr v-for="todoItem in props.todoList" :key="todoItem.id" class="border-b">
             <td class="px-3 py-2">{{ todoItem.id }}</td>
-            <td class="px-3 py-2">{{ todoItem.title }}</td>
+            <td class="px-3 py-2"
+            :class="todoItem.isCompleted ? 'line-through' : ''"
+            >{{ todoItem.title }}</td>
             <td
               class="px-3 py-2"
               :class="todoItem?.isCompleted ? `text-green-800` : `text-red-500`"
             >
               <button
                 type="button"
-                class="border px-4 py-2 rounded-lg text-white cursor-pointer"
+                class="border px-4 py-2 rounded-lg text-white cursor-pointer w-37.5"
                 :class="todoItem.isCompleted ? 'bg-green-500' : 'bg-yellow-500'"
                 @click="() => emit('todo-status', todoItem)"
               >

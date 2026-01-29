@@ -6,10 +6,13 @@ import type { ITodo } from "../contracts/todo";
 
 const todoTitle = ref<string>("");
 const toast = useToast();
+const filterStatus = ref<"all" | "pending" | "complete">("all");
 
 const emit = defineEmits<{
   (e: "add-todo", payload: ITodo): void;
+  (e :"handle-filter", payload:'all' | 'pending' | 'complete'): void
 }>();
+
 
 const handleAddTodo = () => {
   try {
@@ -22,7 +25,6 @@ const handleAddTodo = () => {
       id: uuidv4(),
       title: todoTitle.value,
       isCompleted: false,
-      todoStatus: "pending",
       isDeleted: false,
     };
 
@@ -34,6 +36,7 @@ const handleAddTodo = () => {
     toast.error(error);
   }
 };
+
 </script>
 
 <template>
@@ -54,6 +57,18 @@ const handleAddTodo = () => {
     >
       Add Todo
     </button>
+
+    <select
+      name="todo-filter"
+      id="todo-filter"
+      class="px-6 py-3 rounded-lg cursor-pointer"
+      v-model="filterStatus"
+      @change="emit('handle-filter', filterStatus)"
+    >
+      <option value="all">All</option>
+      <option value="pending">Pending</option>
+      <option value="complete">Completed</option>
+    </select>
   </div>
 </template>
 

@@ -71,3 +71,14 @@ With deep: true
 | `push()` new todo      | ✅           | ✅          |
 | `splice()` delete todo | ✅           | ✅          |
 | Update object property | ❌           | ✅          |
+
+
+
+# Computed does not take arguments
+
+
+✅ Correct Mental Model (lock this in)
+🔹 ref → stores state
+🔹 computed → derives state
+🔹 emit → updates state
+🔹 template → consumes derived state
