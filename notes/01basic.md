@@ -1,7 +1,6 @@
 ## Text Binding in Vue JS
 
 - We can bind the text in **VueJS** using mutiple ways
-
   - Text interpolation using mustache syntax `{{}}`
   - Recommened way using `{{}}`
 
@@ -44,7 +43,6 @@
 
   </script>
   ```
-
 
 ## Dyamic Binding of HTML Attributes
 
@@ -99,4 +97,20 @@ const id2 = "heading2"
   }
 </style>
 
+```
+
+- We can also bind the classes and inline style as well
+- Best part we can bind it with array and object
+
+```javascript
+  const dangerStyledObject = {
+  color: 'red',
+  border: '1px solid red',
+  fontSize: '50px'
+}
+
+
+<template>
+  <h1 :style="[dangerStyledObject]">Ankush</h1>
+</template>
 ```
