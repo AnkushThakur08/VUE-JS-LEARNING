@@ -114,3 +114,22 @@ const id2 = "heading2"
   <h1 :style="[dangerStyledObject]">Ankush</h1>
 </template>
 ```
+
+## Conditional Rendering
+
+- `v-if`
+- `v-else`
+- `v-else-if`
+- `v-show`
+
+### `v-if` `v-else`  `v-else-if`
+- `v-if`  `v-else-if` both accept the numeric expression to evalute
+
+- `v-else-if` should come in between of of both
+
+- `v-else-if` `v-else` must follow a `v-if` directive or a `v-else-if` directive to work
+
+- `v-else` should exactly come in the next line of `v-if` otherwise it will not work
+
+
+![conditional-rendering](image-1.png)
