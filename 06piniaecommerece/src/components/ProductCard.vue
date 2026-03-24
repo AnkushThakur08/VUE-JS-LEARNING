@@ -1,30 +1,18 @@
 <script setup lang="ts">
-import { watch } from "vue";
 import type { IProduct } from "../contracts/Product";
+import { useCartStore } from "../stores/cart";
 
 const props = defineProps<{
   product: IProduct;
 }>();
 
-const emit = defineEmits<{
-  (e: "add-item", payload: IProduct): void; 
-}>()
 
-watch(
-  () => props.product,
-  (product) => {
-    console.log("product", product);
-  },
-  {
-    immediate: true,
-  },
-);
+const shoppingCart = useCartStore()
 
 </script>
-
 <template>
   <div
-    class="w-full max-w-sm bg-neutral-primary-soft p-6 border border-default rounded-base shadow-xs"
+    class="w-full min-h-125 bg-neutral-primary-soft p-6 border border-default rounded-base shadow-xs"
   >
     <a href="#">
       <img
@@ -33,7 +21,7 @@ watch(
         :src="props.product.thumbnail"
       />
     </a>
-    <div>
+    <div class="h-[80%]">
       <div class="flex items-center space-x-3 mb-6">
         <div class="flex items-center space-x-1 rtl:space-x-reverse">
           <svg
@@ -114,14 +102,14 @@ watch(
       </a>
     </div>
 
-    <div class="flex items-center justify-between mt-6">
+    <div class="flex items-center justify-between mt-6 h-[20%]">
       <span class="text-xl font-extrabold text-heading"
         >₹ {{ (props.product.price * 100).toFixed(2) }}</span
       >
       <button
         type="button"
-        class="inline-flex items-center text-white border shadow-xl font-medium leading-5 rounded-base text-sm px-3 py-2 cursor-pointer"
-        @click="emit('add-item', props.product)"
+        class="inline-flex items-center text-black border shadow-xl font-medium leading-5 rounded-base text-sm px-3 py-2 cursor-pointer"
+        @click="shoppingCart.handleAddItem(props.product)"
       >
         <svg
           class="w-4 h-4 me-1.5"
@@ -141,9 +129,11 @@ watch(
           />
         </svg>
         Add to cart
-      </button>
+      </button> 
     </div>
   </div>
 </template>
+<style></style>
 
-<style scoped></style>
+
+

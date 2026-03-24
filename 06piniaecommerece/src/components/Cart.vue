@@ -1,19 +1,12 @@
 <script setup lang="ts">
-import type { ICart, IProduct } from "../contracts/Product";
+import { useCartStore } from "../stores/cart";
 
-const props = defineProps<{
-  cartItems: ICart[];
-}>();
+const shoppingCart = useCartStore();
 
-const emit = defineEmits<{
-  (e: "delete-item", payload: IProduct): void;
-  (e: "increase", payload: number): void;
-  (e: "decrease", payload: number): void;
-}>();
 </script>
 
 <template>
-  <div v-for="item in cartItems" :key="item.product.id">
+  <div v-for="item in shoppingCart.cartItems" :key="item.product.id">
     <div
       class="w-full max-w-sm bg-neutral-primary-soft p-6 border border-default rounded-base shadow-xs"
     >
@@ -49,14 +42,14 @@ const emit = defineEmits<{
         <div>
           <button
             class="border shadow-xl font-medium leading-5 rounded-base text-sm px-2 cursor-pointer"
-            @click="emit('decrease', item.product.id)"
+            @click="shoppingCart.handleQuantityDecrease(item.product.id)"
           >
             -
           </button>
           {{ item.quantity }}
           <button
             class="border shadow-xl font-medium leading-5 rounded-base text-sm px-2 cursor-pointer"
-            @click="emit('increase', item.product.id)"
+            @click="shoppingCart.handleQuantityIncrease(item.product.id)"
           >
             +
           </button>
@@ -64,7 +57,7 @@ const emit = defineEmits<{
         <button
           type="button"
           class="inline-flex items-center border shadow-xl font-medium leading-5 rounded-base text-sm px-3 py-2 cursor-pointer"
-          @click="emit('delete-item', item.product)"
+          @click="shoppingCart.handleRemoveItem(item.product.id)"
         >
           <svg
             class="w-4 h-4 me-1.5"
@@ -89,5 +82,4 @@ const emit = defineEmits<{
     </div>
   </div>
 </template>
-
 <style></style>
