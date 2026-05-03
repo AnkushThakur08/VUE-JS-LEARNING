@@ -82,3 +82,23 @@ With deep: true
 🔹 computed → derives state
 🔹 emit → updates state
 🔹 template → consumes derived state
+
+# Provide And Inject
+
+- It is act as a context, we can use `provide()` so that item should be available globally
+- Then use `inject()` to consume that value 
+
+```js
+// In PARENT
+import { provide } from "vue";
+
+provide("theme", theme);
+
+```
+
+```js
+// In CHILD
+import { inject } from "vue";
+
+const theme = inject<Ref<"light" | "dark">>("theme");
+```

@@ -15,7 +15,7 @@
 
   ```js
   <template>
-    <h1 v-text="channel"></h1
+    <h1 v-text="channel"></h1>
     <!-- this must be kept empty -->
 
     <h1 v-text="channel">Thakur</h1>
@@ -125,7 +125,7 @@ const id2 = "heading2"
 ### `v-if` `v-else`  `v-else-if`
 - `v-if`  `v-else-if` both accept the numeric expression to evalute
 
-- `v-else-if` should come in between of of both
+- `v-else-if` should come in between of both
 
 - `v-else-if` `v-else` must follow a `v-if` directive or a `v-else-if` directive to work
 
