@@ -8,6 +8,9 @@ const myName = "Ankush Thakur"
 const mylastName ="Thakur"
 const h1ID = "heading"
 const isButtonDisabled = true
+const h1TagColor = "red"
+const h2FontSize = "30px"
+const isVisible = true
 
 const theme =ref("light")
 
@@ -41,7 +44,15 @@ console.log("This is my name: ", theme);
     </button>
 
     <div :class="theme === 'dark' ? 'dark-theme' : 'light-theme' ">This is a Theme Container</div>
+
+
+    <h1 :style="{
+      color: h1TagColor,
+      fontSize: h2FontSize
+    }">This is a Headin Tag</h1>
   </div>
+
+  <div v-show="isVisible">Conditional Rendering Div</div>
 </template>
 
 
@@ -63,4 +74,5 @@ console.log("This is my name: ", theme);
     background-color: white;
     color: black;
   }
+
 </style>
