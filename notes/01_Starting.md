@@ -35,3 +35,40 @@
         - used for CSS
 - He will learn `Template Syntax`
 
+
+## Video 5 - Text Binding
+- We can bind the text in **VueJS** by 2 different ways
+1. Text Interpolation
+2. Using Directive
+
+
+### Text Interpolation
+  - Text interpolation using mustache syntax `{{}}`
+  - Recommened way using `{{}}`
+
+  ```js
+  <template>
+    {{ userName }} {{ address }}
+  </template>
+  ```
+
+ ### using Directive
+  - `v-text`
+  - Not Recommened as it replaces innner HTML
+
+  ```js
+  <template>
+    <h1 v-text="channel"></h1>
+    <!-- this must be kept empty -->
+
+    <h1 v-text="channel">Thakur</h1>
+    <!-- It will through error, as Thakur will be overided by Ankush -->
+  </template>
+
+  <script>
+  const channel = "Ankush";
+  </script>
+  ```
+
+### `V-html`
+- To render HTML inisde a div, we use `v-html`
