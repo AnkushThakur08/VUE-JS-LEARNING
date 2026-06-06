@@ -119,4 +119,83 @@ const isVisible = true
 
 ```
 
+# V-for
+
+- Used for looping
+
+- Normal use for `v-for`, 
+### Looping an Array
+```javascript
+
+const names = ["Ankush", "Tanvi", "Rohit", "Yash"]
+
+  <div v-for="value in names" :key="value">
+    {{ value }}
+  </div>
+
+```
+
+### Looping an Object
+- We can have index as well
+- we always bind the unique attribute
+
+```javascript
+
+const fullNames = [
+  {
+    firstName: "Ankush",
+    lastName: "Thakur"
+  },
+  {
+    firstName: "Tanvi",
+    lastName: "Sharma"
+  },
+  {
+    firstName: "Rohit",
+    lastName: "Kumar"
+  },
+  {
+    firstName: "Yash",
+    lastName: "Singh"
+  }
+]
+
+  <div v-for="(value, index) in fullNames" :key="index">{{value.firstName + " " + value.lastName}}</div>
+```
+
+###  Nested Looping
+
+```javascript
+
+const actor = [
+  {
+    name: "Shahrukh Khan",
+    age: 57,
+    movies: ["Dilwale Dulhaniya Le Jayenge", "My Name is Khan", "Chennai Express"]
+  },
+  {
+    name: "Salman Khan",
+    age: 56,
+    movies: ["Bajrangi Bhaijaan", "Sultan", "Kick"]
+  },
+  {
+    name: "Aamir Khan",
+    age: 56,
+    movies: ["Dangal", "3 Idiots", "PK"]
+  },
+  {
+    name: "Hrithik Roshan",
+    age: 48,
+    movies: ["War", "Krrish", "Jodhaa Akbar"]
+  }
+]
+
+  <div v-for="(value, index) in actor" :key="index"> {{ value.name }}
+    <ul>
+      <li v-for="(movie, index) in value.movies" :key="index">{{ movie }}</li>
+    </ul>
+  </div>
+```
+
+
 <!-- 982945667 = Ankush Thakur -->

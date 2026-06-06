@@ -21,6 +21,51 @@ const handleTheme = () => {
 console.log("This is my name: ", theme);
 
 
+const names = ["Ankush", "Tanvi", "Rohit", "Yash"]
+
+const fullNames = [
+  {
+    firstName: "Ankush",
+    lastName: "Thakur"
+  },
+  {
+    firstName: "Tanvi",
+    lastName: "Sharma"
+  },
+  {
+    firstName: "Rohit",
+    lastName: "Kumar"
+  },
+  {
+    firstName: "Yash",
+    lastName: "Singh"
+  }
+]
+
+const actor = [
+  {
+    name: "Shahrukh Khan",
+    age: 57,
+    movies: ["Dilwale Dulhaniya Le Jayenge", "My Name is Khan", "Chennai Express"]
+  },
+  {
+    name: "Salman Khan",
+    age: 56,
+    movies: ["Bajrangi Bhaijaan", "Sultan", "Kick"]
+  },
+  {
+    name: "Aamir Khan",
+    age: 56,
+    movies: ["Dangal", "3 Idiots", "PK"]
+  },
+  {
+    name: "Hrithik Roshan",
+    age: 48,
+    movies: ["War", "Krrish", "Jodhaa Akbar"]
+  }
+]
+
+
 </script>
 
 <template>
@@ -53,6 +98,21 @@ console.log("This is my name: ", theme);
   </div>
 
   <div v-show="isVisible">Conditional Rendering Div</div>
+
+
+
+  <div v-for="value in names" :key="value">
+    {{ value }}
+  </div>
+
+  <div v-for="(value, index) in fullNames" :key="index">{{value.firstName + " " + value.lastName}}</div>
+
+
+  <div v-for="(value, index) in actor" :key="index"> {{ value.name }}
+    <ul>
+      <li v-for="(movie, index) in value.movies" :key="index">{{ movie }}</li>
+    </ul>
+  </div>
 </template>
 
 
